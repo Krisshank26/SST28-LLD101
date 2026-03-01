@@ -1,22 +1,22 @@
 import java.util.*;
 
 public class HostelFeeCalculator {
-    private final FakeBookingRepo repo;
+    private final FakeBookingRepo repo= FakeBookingRepo.getInstance() ;
 
-    public HostelFeeCalculator(FakeBookingRepo repo) { this.repo = repo; }
+    /* public HostelFeeCalculator(FakeBookingRepo repo) { this.repo = repo; } */
 
     // OCP violation: switch + add-on branching + printing + persistence.
     public void process(BookingRequest req) {
-        Money monthly = calculateMonthly(req);
-        Money deposit = new Money(5000.00);
+        Money monthly = CalculateMoney.calculateMonthly(req ) ;
+        Money deposit = CalculateMoney.calculateDeposit() ;
 
-        ReceiptPrinter.print(req, monthly, deposit);
+        ReceiptPrinter.print(req, monthly, deposit) ;
 
-        String bookingId = "H-" + (7000 + new Random(1).nextInt(1000)); // deterministic-ish
-        repo.save(bookingId, req, monthly, deposit);
+        /* String bookingId = "H-" + (7000 + new Random(1).nextInt(1000)) ; */  // deterministic-ish
+        repo.save() ;
     }
 
-    private Money calculateMonthly(BookingRequest req) {
+    /* private Money calculateMonthly(BookingRequest req) {
         double base;
         switch (req.roomType) {
             case LegacyRoomTypes.SINGLE -> base = 14000.0;
@@ -32,6 +32,6 @@ public class HostelFeeCalculator {
             else if (a == AddOn.GYM) add += 300.0;
         }
 
-        return new Money(base + add);
-    }
+        return new Money(base + add) ;
+    } */
 }
