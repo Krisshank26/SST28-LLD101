@@ -4,4 +4,4 @@ public class IdUtil {
         String num = String.format("%04d", next);
         return "SST-2026-" + num;
     }
-}
+} 

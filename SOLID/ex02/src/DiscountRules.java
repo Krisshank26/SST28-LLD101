@@ -1,4 +1,4 @@
-public class DiscountRules {
+/* public class DiscountRules {
     public static double discountAmount(String customerType, double subtotal, int distinctLines) {
         // hard-coded policy (smell)
         if ("student".equalsIgnoreCase(customerType)) {
@@ -11,4 +11,4 @@ public class DiscountRules {
         }
         return 0.0;
     }
-}
+} */ 
