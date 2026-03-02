@@ -1,9 +1,10 @@
 import java.util.*;
 
 public class HostelFeeCalculator {
-    private final FakeBookingRepo repo= FakeBookingRepo.getInstance() ;
+    /* private final FakeBookingRepo repo= FakeBookingRepo.getInstance() ; */
+    private final FakeBookingRepo repo ;
 
-    /* public HostelFeeCalculator(FakeBookingRepo repo) { this.repo = repo; } */
+    public HostelFeeCalculator(FakeBookingRepo repo) { this.repo = repo; }
 
     // OCP violation: switch + add-on branching + printing + persistence.
     public void process(BookingRequest req) {
