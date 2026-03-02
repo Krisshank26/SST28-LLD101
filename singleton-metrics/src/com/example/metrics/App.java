@@ -11,16 +11,16 @@ import java.util.Map;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        String propsPath = "metrics.properties";
+        String propsPath = "singleton-metrics/src/metrics.properties" ;
 
-        MetricsLoader loader = new MetricsLoader();
+        MetricsLoader loader = new MetricsLoader() ;
         MetricsRegistry loaded = loader.loadFromFile(propsPath);
 
         // In a correct design, loader should populate the SAME singleton instance.
-        MetricsRegistry global = MetricsRegistry.getInstance();
+        MetricsRegistry global = MetricsRegistry.getInstance() ;
 
-        System.out.println("Loaded registry instance  : " + System.identityHashCode(loaded));
-        System.out.println("Global registry instance  : " + System.identityHashCode(global));
+        System.out.println("Loaded registry instance  : " + System.identityHashCode(loaded)) ;
+        System.out.println("Global registry instance  : " + System.identityHashCode(global)) ;
 
         global.increment("REQUESTS_TOTAL");
         System.out.println("\nREQUESTS_TOTAL = " + global.getCount("REQUESTS_TOTAL"));

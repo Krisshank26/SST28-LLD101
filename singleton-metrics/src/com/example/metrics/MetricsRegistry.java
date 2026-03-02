@@ -1,10 +1,11 @@
 package com.example.metrics;
 
-import java.io.Serial;
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serial ;
+import java.io.Serializable ;
+import java.util.Collections ;
+import java.util.HashMap ;
+import java.util.Map ;
+import java.io.ObjectStreamException ;
 
 /**
  * INTENTION: Global metrics registry (should be a Singleton).
@@ -25,24 +26,38 @@ public class MetricsRegistry implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private static MetricsRegistry INSTANCE; // BROKEN: not volatile, not thread-safe
+    private volatile static MetricsRegistry INSTANCE ; // BROKEN: not volatile, not thread-safe
     private final Map<String, Long> counters = new HashMap<>();
 
     // BROKEN: should be private and should prevent second construction
-    public MetricsRegistry() {
+    private MetricsRegistry() throws RuntimeException {
         // intentionally empty
+        if(INSTANCE!= null ) {
+            throw new RuntimeException("Instance create with getInstance() Method " ) ;
+        }
     }
 
     // BROKEN: racy lazy init; two threads can create two instances
-    public static MetricsRegistry getInstance() {
+    public static MetricsRegistry getInstance() throws RuntimeException {
         if (INSTANCE == null) {
-            INSTANCE = new MetricsRegistry();
+            synchronized(MetricsRegistry.class )
+            {
+                if(INSTANCE== null ) {
+                    INSTANCE = new MetricsRegistry() ;
+                }
+            }
         }
         return INSTANCE;
     }
 
+    @Serial
+    private Object readResolve() throws ObjectStreamException
+    {
+        return getInstance() ;
+    }
+
     public synchronized void setCount(String key, long value) {
-        counters.put(key, value);
+        counters.put(key, value) ;
     }
 
     public synchronized void increment(String key) {

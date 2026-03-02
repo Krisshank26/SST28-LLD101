@@ -12,17 +12,17 @@ public class SerializationCheck {
         MetricsRegistry a = MetricsRegistry.getInstance();
         a.setCount("REQUESTS_TOTAL", 42);
 
-        byte[] bytes = serialize(a);
-        MetricsRegistry b = deserialize(bytes);
+        byte[] bytes = serialize(a) ;
+        MetricsRegistry b = deserialize(bytes) ;
 
         System.out.println("A identity: " + System.identityHashCode(a));
         System.out.println("B identity: " + System.identityHashCode(b));
-        System.out.println("Same object? " + (a == b));
-        System.out.println("B REQUESTS_TOTAL = " + b.getCount("REQUESTS_TOTAL"));
+        System.out.println("Same object? " + (a == b ) ) ;
+        System.out.println("B REQUESTS_TOTAL = " + b.getCount("REQUESTS_TOTAL" ) ) ;
     }
 
     private static byte[] serialize(MetricsRegistry r) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream() ;
         try (ObjectOutputStream oos = new ObjectOutputStream(baos)) {
             oos.writeObject(r);
         }

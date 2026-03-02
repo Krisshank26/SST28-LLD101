@@ -12,7 +12,7 @@ public class ReflectionAttack {
         MetricsRegistry singleton = MetricsRegistry.getInstance();
 
         Constructor<MetricsRegistry> ctor = MetricsRegistry.class.getDeclaredConstructor();
-        ctor.setAccessible(true);
+        ctor.setAccessible(true) ;
 
         MetricsRegistry evil = ctor.newInstance();
 
