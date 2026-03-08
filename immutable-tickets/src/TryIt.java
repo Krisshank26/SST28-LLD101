@@ -20,14 +20,14 @@ public class TryIt {
         System.out.println("Created: " + t);
 
         // Demonstrate post-creation mutation through service
-        IncidentTicket ta= service.assign(t, "agent@example.com");
-        IncidentTicket te= service.escalateToCritical(t);
-        System.out.println("\nAfter service mutations: " + t);
+        IncidentTicket ta= service.assign(t, "agent@example.com" ) ;
+        IncidentTicket te= service.escalateToCritical(t ) ;
+        System.out.println("\nAfter service mutations: " + t ) ;
 
         // Demonstrate external mutation via leaked list reference
         List<String> tags = t.getTags() ;
         tags.add("HACKED_FROM_OUTSIDE") ;
-        System.out.println("\nAfter external tag mutation: " + t) ;
+        System.out.println("\nAfter external tag mutation: " + t ) ;
 
         // Starter compiles; after refactor, you should redesign updates to create new objects instead.
     }

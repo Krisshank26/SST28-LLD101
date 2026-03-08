@@ -6,4 +6,10 @@ public class ExportRequest {
         this.title = title;
         this.body = body;
     }
+
+    public ExportRequest(ExportRequest rb )
+    {
+        title= rb.title ;
+        body= rb.body ;
+    }
 }
