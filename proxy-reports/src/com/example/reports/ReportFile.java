@@ -26,13 +26,13 @@ public class ReportFile {
         System.out.println("REPORT -> id=" + reportId
                 + " title=" + title
                 + " classification=" + classification
-                + " openedBy=" + user.getName());
-        System.out.println("CONTENT: " + content);
-    }
+                + " openedBy=" + user.getName() ) ; 
+        System.out.println("CONTENT: " + content ) ; 
+    } 
 
     private String loadFromDisk() {
-        System.out.println("[disk] loading report " + reportId + " ...");
-        try { Thread.sleep(120); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
-        return "Internal report body for " + title;
-    }
-}
+        System.out.println("[disk] loading report " + reportId + " ..." ) ; 
+        try { Thread.sleep(120); } catch (InterruptedException e) { Thread.currentThread().interrupt() ; }
+        return "Internal report body for " + title ; 
+    } 
+} 

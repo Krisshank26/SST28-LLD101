@@ -1,5 +1,5 @@
-package com.example.reports;
+package com.example.reports ; 
 
-public interface Report {
-    void display(User user);
-}
+public interface Report { 
+    void display(User user ) ; 
+} 
