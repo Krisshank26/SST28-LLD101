@@ -1,11 +1,6 @@
 package com.example.reports;
 
 /**
- * Starter demo.
- *
- * CURRENT BEHAVIOR:
- * - Everyone can open everything
- * - Disk load happens on every call
  *
  * AFTER REFACTOR:
  * - Client code should use ReportProxy
