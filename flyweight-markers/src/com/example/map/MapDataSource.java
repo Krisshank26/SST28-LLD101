@@ -1,20 +1,17 @@
-package com.example.map;
+package com.example.map ; 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.ArrayList ;
+import java.util.List ; 
+import java.util.Random ; 
 
-/**
- * Generates markers for demo/testing.
- *
- * CURRENT STATE (BROKEN ON PURPOSE):
- * - Creates new MarkerStyle per MapMarker via MapMarker constructor.
+/** 
+ * Generates markers for demo/testing. 
  *
  * TODO (student):
  * - After introducing MarkerStyleFactory, refactor so identical styles are shared.
  * - Suggested approach:
  *   1) Change MapMarker to accept MarkerStyle directly
- *   2) Use MarkerStyleFactory.get(shape,color,size,filled) here
+ *   2) Use MarkerStyleFactory.get(shape,color,size,filled) here 
  */
 public class MapDataSource {
 
@@ -35,9 +32,10 @@ public class MapDataSource {
             String shape = SHAPES[rnd.nextInt(SHAPES.length)];
             String color = COLORS[rnd.nextInt(COLORS.length)];
             int size = SIZES[rnd.nextInt(SIZES.length)];
-            boolean filled = rnd.nextBoolean();
+            boolean filled = rnd.nextBoolean() ; 
+            MarkerStyle style= MarkerStyleFactory.get(shape, color, size, filled ) ; 
 
-            out.add(new MapMarker(lat, lng, label, shape, color, size, filled));
+            out.add(new MapMarker(lat, lng, label, style ) ) ; 
         }
         return out;
     }

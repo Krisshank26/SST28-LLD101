@@ -18,5 +18,5 @@ public class App {
         System.out.println();
         System.out.println("Run QuickCheck to verify Flyweight sharing:");
         System.out.println("  java com.example.map.QuickCheck");
-    }
-}
+    } 
+} 

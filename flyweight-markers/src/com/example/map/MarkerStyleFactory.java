@@ -15,15 +15,22 @@ import java.util.Map;
  */
 public class MarkerStyleFactory {
 
-    private final Map<String, MarkerStyle> cache = new HashMap<>();
+    private static final Map<String, MarkerStyle> cache = new HashMap<>() ; 
 
-    public MarkerStyle get(String shape, String color, int size, boolean filled) {
-        String key = shape + "|" + color + "|" + size + "|" + (filled ? "F" : "O");
-        // TODO: return cached instance if present; otherwise create, cache, and return.
-        return new MarkerStyle(shape, color, size, filled);
-    }
+    public static MarkerStyle get(String shape, String color, int size, boolean filled) {
+        String key = shape + "|" + color + "|" + size + "|" + (filled ? "F" : "O" ) ; 
+        // TODO: return cached instance if present; otherwise create, cache, and return. 
+        if(cache.containsKey(key ) ) 
+        { 
+            return cache.get(key ) ; 
+        } 
+        MarkerStyle style= new MarkerStyle(shape, color, size, filled ) ; 
+        cache.put(key, style ) ; 
+        return style ; 
+        /* return cache.computeIfAbsent(key, key-> new MarkerStyle(shape, color, size, filled ) ) ; */ 
+    } 
 
-    public int cacheSize() {
-        return cache.size();
-    }
-}
+    public int cacheSize() { 
+        return cache.size() ; 
+    } 
+} 
